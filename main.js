@@ -126,3 +126,13 @@ function buildForm(name, form) {
     
     form.appendChild(document.createElement('br'));
 }
+
+function copyIt() {
+	var textToCopy = ''
+	textToCopy += document.getElementById("endResult-paint").innerHTML + " \n";
+	textToCopy += document.getElementById("endResult-plastic").innerHTML + " \n";
+	textToCopy += document.getElementById("endResult-energy").innerHTML + " \n";
+	textToCopy += document.getElementById("endResult-metal").innerHTML;
+	
+	navigator.clipboard.writeText(textToCopy)
+}
