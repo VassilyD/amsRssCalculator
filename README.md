@@ -1,0 +1,1 @@
+# [AMS rssBox calculator](https://vassilyd.github.io/amsRssCalculator/)
