@@ -68,10 +68,6 @@ window.onload = function() {
 	changeIt();
 }
 
-function showIt() {
-	document.getElementById("demo").innerHTML = "you have " + CalculateIt().toLocaleString() + " " + rssType;
-}
-
 function saveIt() {
     var result = document.createElement('p');
 	result.innerHTML = "you have " + CalculateIt().toLocaleString() + " " + rssType;
@@ -104,8 +100,6 @@ function changeIt() {
 	rssType = document.getElementById("rssType").value;
     var form = document.getElementById("amsRssForm");
     
-    
-    document.getElementById("demo").innerHTML = '';
     form.innerHTML = '';
     for(const name in rss[rssType]) buildForm(name, form);
 }
