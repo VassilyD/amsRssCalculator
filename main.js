@@ -359,7 +359,8 @@ function buildForm(elem, form) {
 function copyIt() {
 	var textToCopy = ''
 	for(var elem in rss[typeChosen]) {
-		textToCopy += document.getElementById("endResult-"+elem).innerHTML + '\n';
+		var textTemp = document.getElementById("endResult-"+elem).innerHTML
+		if(textTemp.slice(8,11) != ' 0 ') textToCopy += textTemp + '\n';
 	}
 	
 	navigator.clipboard.writeText(textToCopy)
