@@ -227,8 +227,10 @@ function saveIt() {
 function resetIt() {
 	if(confirm("This will erase all value, are you sure you wanna continue?")) {
 		changeIt();
-		for(var elem in rss) {
-			document.getElementById("endResult-"+elem).innerHTML = 'You have 0 ' + elem;
+		var endResult = document.getElementById("endResult");
+		endResult.innerHTML = '';
+		for(var elem in rss[typeChosen]) {
+			buildResult(elem, endResult);
 		}
 	}
 }
