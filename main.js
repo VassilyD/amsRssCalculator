@@ -68,6 +68,16 @@ var rss = {
 			{name : "5k spray",		value : 5000},
 			{name : "10k spray",		value : 10000},
 			{name : "50k spray",		value : 50000}
+		],
+		"gold" : [
+			{name : "1 gold",		value : 1},
+			{name : "5 gold",		value : 5},
+			{name : "10 gold",		value : 10},
+			{name : "20 gold",		value : 20},
+			{name : "50 gold",		value : 50},
+			{name : "100 gold",		value : 100},
+			{name : "200 gold",		value : 200},
+			{name : "1k gold",		value : 1000}
 		]
 	},
 	"speed up" : {
@@ -301,6 +311,8 @@ function changeType() {
 		buildOption(elem, selectRSS);
 		buildResult(elem, endResult);
 	}
+	
+	document.getElementById("rssTypeLabel").innerHTML = ((typeChosen == 'ressources') ? 'Choose rss type :' : 'Choose speed up type :');
 	changeIt();
 }
 
