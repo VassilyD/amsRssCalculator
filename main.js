@@ -66,8 +66,8 @@ var rss = {
 		"spray" : [
 			{name : "1k spray",		value : 1000},
 			{name : "5k spray",		value : 5000},
-			{name : "10k spray",		value : 10000},
-			{name : "50k spray",		value : 50000}
+			{name : "10k spray",	value : 10000},
+			{name : "50k spray",	value : 50000}
 		],
 		"gold" : [
 			{name : "1 gold",		value : 1},
@@ -78,6 +78,12 @@ var rss = {
 			{name : "100 gold",		value : 100},
 			{name : "200 gold",		value : 200},
 			{name : "1k gold",		value : 1000}
+		],
+		"VIP point" : [
+			{name : "10 VIP point",		value : 10},
+			{name : "100 VIP point",	value : 100},
+			{name : "300 VIP point",	value : 300},
+			{name : "1000 VIP point",	value : 1000}
 		]
 	},
 	"speed up" : {
@@ -206,6 +212,13 @@ var rss = {
 			{name : "5d defense speed up",			value : 7200},
 			{name : "7d defense speed up",			value : 10080},
 			{name : "30d defense speed up",			value : 43200}
+		],
+		"VIP time" : [
+			{name : "30mn VIP time",	value : 30},
+			{name : "60mn VIP time",	value : 60},
+			{name : "1d VIP time",		value : 1440},
+			{name : "7d VIP time",		value : 10080},
+			{name : "30d VIP time",		value : 43200}
 		]
 	}
 };
