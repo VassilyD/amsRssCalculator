@@ -9,12 +9,16 @@
 <body>
 
 	<form>
+		<label for="rssOrSpeed">What do you wanna calculate :</label>
+		<select id="rssOrSpeed" name="rssOrSpeed" onchange="changeType()">
+		</select> <br>
+	</form>
+
+	<br>
+	
+	<form>
 		<label for="rssType">Choose rss type :</label>
 		<select id="rssType" name="rssType" onchange="changeIt()">
-    		<option value="paint">Paint</option>
-    		<option value="plastic" selected>Plastic</option>
-    		<option value="energy">Batterie</option>
-    		<option value="metal">Metal</option>
 		</select> <br>
 	</form>
 
@@ -31,10 +35,6 @@
 
 	<p id="demo"></p>
 	<div id="endResult">
-		<p id="endResult-paint">You have 0 paint</p>
-		<p id="endResult-plastic">You have 0 plastic</p>
-		<p id="endResult-energy">You have 0 energy</p>
-		<p id="endResult-metal">You have 0 metal</p>
 	</div>
 
 <script>
