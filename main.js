@@ -155,6 +155,27 @@ var rss = {
 			{name : "7d training speed up",			value : 10080},
 			{name : "30d training speed up",		value : 43200}
 		],
+		"healing" : [
+			{name : "1mn healing speed up",			value : 1},
+			{name : "3mn healing speed up",			value : 3},
+			{name : "5mn healing speed up",			value : 5},
+			{name : "10mn healing speed up",		value : 10},
+			{name : "15mn healing speed up",		value : 15},
+			{name : "20mn healing speed up",		value : 20},
+			{name : "30mn healing speed up",		value : 30},
+			{name : "45mn healing speed up",		value : 45},
+			{name : "1h healing speed up",			value : 60},
+			{name : "2h healing speed up",			value : 120},
+			{name : "3h healing speed up",			value : 180},
+			{name : "5h healing speed up",			value : 300},
+			{name : "8h healing speed up",			value : 480},
+			{name : "15h healing speed up",			value : 900},
+			{name : "24h healing speed up",			value : 1440},
+			{name : "3d healing speed up",			value : 4320},
+			{name : "5d healing speed up",			value : 7200},
+			{name : "7d healing speed up",			value : 10080},
+			{name : "30d healing speed up",			value : 43200}
+		],
 		"defense" : [
 			{name : "1mn defense speed up",			value : 1},
 			{name : "3mn defense speed up",			value : 3},
