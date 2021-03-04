@@ -128,7 +128,7 @@ function copyIt() {
 		if(textTemp.slice(8,11) != ' 0 ') textToCopy += textTemp + '\n';
 	}
 	
-	navigator.clipboard.writeText(textToCopy)
+	navigator.clipboard.writeText(textToCopy.slice(0,-1));
 }
 
 function resetIt() {
