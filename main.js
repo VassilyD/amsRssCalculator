@@ -115,12 +115,6 @@ function changeIt() {
 
 
 
-function saveIt() {
-    var result = document.createElement('p');
-	result.innerHTML = "you have " + CalculateIt().toLocaleString() + " " + rssType;
-    endResult.appendChild(result);
-}
-
 function copyIt() {
 	var textToCopy = ''
 	for(var elem in rss[typeSelected]) {
