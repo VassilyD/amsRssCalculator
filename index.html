@@ -4,7 +4,10 @@
 	<title>AMS ressource box calculator</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="main.css">
+	
+	<script type="text/javascript" src="table.js"></script>
 	<script type="text/javascript" src="main.js"></script>
+	
 </head>
 <body>
 
@@ -24,7 +27,7 @@
 
 	<br>
 	
-	<form id="amsRssForm" onchange="calculateIt()">
+	<form id="amsRssForm" onchange="updateIt()">
 	</form> 
 
 	<br>
@@ -32,6 +35,7 @@
 	<button onclick="calculateIt()">Calculate it</button>
 	<button onclick="copyIt()">Copy result to clipboard</button>
     <button onclick="resetIt()">Reset result</button>
+    <button onclick="resetItAll()">Reset all</button>
 
 	<p id="demo"></p>
 	<div id="endResult">
