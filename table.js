@@ -103,6 +103,10 @@ let rss = {
 			{Qty : 0,	name : "3d versatile speed up",		value : 4320},
 			{Qty : 0,	name : "5d versatile speed up",		value : 7200},
 			{Qty : 0,	name : "7d versatile speed up",		value : 10080},
+			{Qty : 0,	name : "10d versatile speed up",		value : 14400},
+			{Qty : 0,	name : "15d versatile speed up",		value : 21600},
+			{Qty : 0,	name : "20d versatile speed up",		value : 28800},
+			{Qty : 0,	name : "25d versatile speed up",		value : 36000},
 			{Qty : 0,	name : "30d versatile speed up",		value : 43200}
 		],
 		"building" : [
@@ -124,6 +128,10 @@ let rss = {
 			{Qty : 0,	name : "3d building speed up",			value : 4320},
 			{Qty : 0,	name : "5d building speed up",			value : 7200},
 			{Qty : 0,	name : "7d building speed up",			value : 10080},
+			{Qty : 0,	name : "10d building speed up",		value : 14400},
+			{Qty : 0,	name : "15d building speed up",		value : 21600},
+			{Qty : 0,	name : "20d building speed up",		value : 28800},
+			{Qty : 0,	name : "25d building speed up",		value : 36000},
 			{Qty : 0,	name : "30d building speed up",		value : 43200}
 		],
 		"research" : [
@@ -145,6 +153,10 @@ let rss = {
 			{Qty : 0,	name : "3d research speed up",			value : 4320},
 			{Qty : 0,	name : "5d research speed up",			value : 7200},
 			{Qty : 0,	name : "7d research speed up",			value : 10080},
+			{Qty : 0,	name : "10d research speed up",		value : 14400},
+			{Qty : 0,	name : "15d research speed up",		value : 21600},
+			{Qty : 0,	name : "20d research speed up",		value : 28800},
+			{Qty : 0,	name : "25d research speed up",		value : 36000},
 			{Qty : 0,	name : "30d research speed up",		value : 43200}
 		],
 		"training" : [
@@ -166,6 +178,10 @@ let rss = {
 			{Qty : 0,	name : "3d training speed up",			value : 4320},
 			{Qty : 0,	name : "5d training speed up",			value : 7200},
 			{Qty : 0,	name : "7d training speed up",			value : 10080},
+			{Qty : 0,	name : "10d training speed up",		value : 14400},
+			{Qty : 0,	name : "15d training speed up",		value : 21600},
+			{Qty : 0,	name : "20d training speed up",		value : 28800},
+			{Qty : 0,	name : "25d training speed up",		value : 36000},
 			{Qty : 0,	name : "30d training speed up",		value : 43200}
 		],
 		"healing" : [
@@ -187,6 +203,10 @@ let rss = {
 			{Qty : 0,	name : "3d healing speed up",			value : 4320},
 			{Qty : 0,	name : "5d healing speed up",			value : 7200},
 			{Qty : 0,	name : "7d healing speed up",			value : 10080},
+			{Qty : 0,	name : "10d healing speed up",		value : 14400},
+			{Qty : 0,	name : "15d healing speed up",		value : 21600},
+			{Qty : 0,	name : "20d healing speed up",		value : 28800},
+			{Qty : 0,	name : "25d healing speed up",		value : 36000},
 			{Qty : 0,	name : "30d healing speed up",			value : 43200}
 		],
 		"defense" : [
@@ -208,6 +228,10 @@ let rss = {
 			{Qty : 0,	name : "3d defense speed up",			value : 4320},
 			{Qty : 0,	name : "5d defense speed up",			value : 7200},
 			{Qty : 0,	name : "7d defense speed up",			value : 10080},
+			{Qty : 0,	name : "10d defense speed up",		value : 14400},
+			{Qty : 0,	name : "15d defense speed up",		value : 21600},
+			{Qty : 0,	name : "20d defense speed up",		value : 28800},
+			{Qty : 0,	name : "25d defense speed up",		value : 36000},
 			{Qty : 0,	name : "30d defense speed up",			value : 43200}
 		],
 		"VIP time" : [
