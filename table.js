@@ -13,6 +13,7 @@ let rss = {
 			{Qty : 0,	name : "500k paint", 	value : 500000},
 			{Qty : 0,	name : "1.5M paint", 	value : 1500000},
 			{Qty : 0,	name : "5M paint", 		value : 5000000},
+			{Qty : 0,	name : "10M paint", 	value : 10000000},
 			{Qty : 0,	name : "25M paint", 	value : 25000000},
 			{Qty : 0,	name : "50M paint", 	value : 50000000}
 		],
@@ -29,6 +30,7 @@ let rss = {
 			{Qty : 0,	name : "500k plastic", 	value : 500000},
 			{Qty : 0,	name : "1.5M plastic", 	value : 1500000},
 			{Qty : 0,	name : "5M plastic", 	value : 5000000},
+			{Qty : 0,	name : "10M plastic", 	value : 10000000},
 			{Qty : 0,	name : "25M plastic", 	value : 25000000},
 			{Qty : 0,	name : "50M plastic", 	value : 50000000}
 		],
