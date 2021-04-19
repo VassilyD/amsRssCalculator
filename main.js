@@ -59,7 +59,14 @@ function beautify(value) {
 function changeResultUnit(value) {
 	compactUnit = value*1;
 	
-	CalculateItAll()
+	CalculateItAll();
+}
+
+function toggleUnitChoice() {
+	if (isCompact.checked) compactUnitForm.style.display = 'block';
+	else compactUnitForm.style.display = 'none';
+	
+	CalculateItAll();
 }
 
 function CalculateItAll() {
@@ -79,6 +86,7 @@ window.onload = function() {
 	isCompact = document.getElementById("resultUnit");
 	compactUnitForm = document.getElementById("resultUnitChoice");
 	isCompact.checked = false;
+	compactUnitForm.style.display = 'none';
 	
 	for(var type in rss) {
 		buildOtionChoose(type);
