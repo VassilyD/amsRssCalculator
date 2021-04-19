@@ -36,6 +36,17 @@
 	<button onclick="copyIt()">Copy result to clipboard</button>
     <button onclick="resetIt()">Reset result</button>
     <button onclick="resetItAll()">Reset all</button>
+	
+	<br>
+	
+	<form>
+		<label for="resultUnit">Fixed unit : </label>
+		<input type="checkbox" id="resultUnit" name="resultUnit" onchange="CalculateItAll()">
+	</form>
+	
+	<form id="resultUnitChoice">
+	</form>
+
 
 	<p id="demo"></p>
 	<div id="endResult">

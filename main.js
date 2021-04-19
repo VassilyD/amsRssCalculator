@@ -4,38 +4,81 @@ let rssType;
 let TypeChoose;
 let endResult;
 let rssForm;
+let isCompact;
+let compactUnitForm;
+let compactUnit = 0;
+let unitDisplay = {
+	"ressources" : [
+		{unit : '', name : 'base', value : 1},
+		{unit : 'k', name : 'thousand', value : 1000},
+		{unit : 'M', name : 'million', value : Math.pow(1000, 2)},
+		{unit : 'G', name : 'billion', value : Math.pow(1000, 3)},
+		{unit : 'T', name : 'trillion', value : Math.pow(1000, 4)}
+	],
+	"speed up" : [
+		{unit : 'mn', name : 'minute', value : 1},
+		{unit : 'h', name : 'hour', value : 60},
+		{unit : 'd', name : 'day', value : 1440},
+		{unit : 'y', name : 'year', value : 525600},
+		{unit : 'c', name : 'century', value : 52594920}
+	]
+};
 
 const capitalize = (s) => {
   if (typeof s !== 'string') return ''
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-function convertToTime(value) {
+function beautifyTime(value) {
 	var endValue = '';
-	if (value >= 1440) {
-		var valueDay = Math.trunc(value / 1440)
-		endValue += valueDay + 'd ';
-		value -= valueDay * 1440;
-	}
-	if (value >= 60) {
-		var valueHour = Math.trunc(value / 60)
-		endValue += valueHour + 'h ';
-		value -= valueHour * 60;
-	}
-	if (value > 0) {
-		endValue += value + 'mn';
+	for(var weight = (isCompact.checked) ? compactUnit : unitDisplay['speed up'].length - 1; weight >= 0; weight--) {
+		if (value >= unitDisplay['speed up'][weight].value) {
+			var tempValue = Math.trunc(value / unitDisplay['speed up'][weight].value)
+			endValue += tempValue.toLocaleString() + unitDisplay['speed up'][weight].unit + ' ';
+			value -= tempValue * unitDisplay['speed up'][weight].value;
+		}
 	}
 	
 	return ((endValue == '') ? ' 0 mn ' : endValue);
 }
 
+function beautifyRSS(value) {
+	var opt = {maximumFractionDigits: 2, minimumFractionDigits: 0}
+	if (isCompact.checked) {
+		var weight = (isCompact.checked) ? compactUnit : 0;
+		while (value < unitDisplay['ressources'][weight].value && weight > 0) weight--;
+		return (value / unitDisplay['ressources'][weight].value).toLocaleString(undefined, opt) + '' + unitDisplay['ressources'][weight].unit;
+	}
+	else return value.toLocaleString()
+}
 
+function beautify(value) {
+	return ((typeSelected == 'ressources') ? beautifyRSS(value) : beautifyTime(value));
+}
+
+function changeResultUnit(value) {
+	compactUnit = value*1;
+	
+	CalculateItAll()
+}
+
+function CalculateItAll() {
+    for(const elem in rss[typeSelected]) {
+		rssSelected = elem;
+		calculateIt();
+	}
+	
+	rssSelected = rssType.value;
+}
 
 window.onload = function() {
 	rssType = document.getElementById("rssType");
 	TypeChoose = document.getElementById("rssOrSpeed");
 	endResult = document.getElementById("endResult");
     rssForm = document.getElementById("amsRssForm");
+	isCompact = document.getElementById("resultUnit");
+	compactUnitForm = document.getElementById("resultUnitChoice");
+	isCompact.checked = false;
 	
 	for(var type in rss) {
 		buildOtionChoose(type);
@@ -59,6 +102,22 @@ function buildOption(elem) {
     rssType.appendChild(optionRSS);
 }
 
+function buildUnitResultChoice(elem, weight) {
+    var input = document.createElement('input');
+    input.type = 'radio';
+    input.name = 'unitChoice';
+    input.value = weight;
+	input.id = 'unit-' + elem.name;
+	if (weight == compactUnit) input.checked = true;
+	input.onclick = function() { changeResultUnit(this.value); }
+    compactUnitForm.appendChild(input);
+    
+	var label = document.createElement('label');
+    label.htmlFor = 'unit-' + elem.name;
+    label.innerHTML = capitalize(elem.name);
+    compactUnitForm.appendChild(label);
+}
+
 function buildResult(elem) {
 	var pResult = document.createElement('p');
     pResult.id = 'endResult-' + elem;
@@ -69,13 +128,14 @@ function buildResult(elem) {
 
 function buildForm(elem) {
 	var label = document.createElement('label');
-    label.for = elem.name;
+    label.htmlFor = 'id-' + elem.name;
     label.innerHTML = elem.name + ((typeSelected == 'ressources') ? ' box ' : ' ');
     rssForm.appendChild(label);
     
     var input = document.createElement('input');
     input.type = 'number';
     input.name = elem.name;
+	input.id = 'id-' + elem.name;
     input.min = 0;
     input.value = elem.Qty;
     rssForm.appendChild(input);
@@ -90,9 +150,14 @@ function changeType() {
     
     rssType.innerHTML = '';
     endResult.innerHTML = '';
+	compactUnitForm.innerHTML = '';
     for(const elem in rss[typeSelected]) {
 		buildOption(elem);
 		buildResult(elem);
+	}
+	if (unitDisplay[typeSelected].length - 1 < compactUnit) compactUnit = unitDisplay[typeSelected].length - 1;
+    for(var i = 0; i < unitDisplay[typeSelected].length; i++) {
+		buildUnitResultChoice(unitDisplay[typeSelected][i], i);
 	}
 	
 	document.getElementById("rssTypeLabel").innerHTML = ((typeSelected == 'ressources') ? 'Choose rss type :' : 'Choose speed up type :');
@@ -167,8 +232,7 @@ function calculateIt() {
 	for(const elem of rss[typeSelected][rssSelected]) if(elem.Qty > 0) rssTotal += elem.Qty * elem.value;
 	
 	if(rssTotal != 0) {
-		rssTotal = ((typeSelected == 'ressources') ? rssTotal.toLocaleString() : convertToTime(rssTotal));
-		pResult.innerHTML = "You have " + rssTotal + ((typeSelected == 'ressources') ? ' ' : ' of ') + rssSelected + ((typeSelected == 'ressources') ? '' : ' speed up');
+		pResult.innerHTML = "You have " + beautify(rssTotal) + ((typeSelected == 'ressources') ? ' ' : 'of ') + rssSelected + ((typeSelected == 'ressources') ? '' : ' speed up');
 		pResult.style.display = 'block';
 	}
 }
