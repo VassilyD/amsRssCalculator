@@ -1,102 +1,4 @@
-let rssSelected;
-let typeSelected;
-let rssType;
-let TypeChoose;
-let endResult;
-let rssForm;
-let isCompact;
-let compactUnitForm;
-let compactUnit = 0;
-let unitDisplay = {
-	"ressources" : [
-		{unit : '', name : 'base', value : 1},
-		{unit : 'k', name : 'thousand', value : 1000},
-		{unit : 'M', name : 'million', value : Math.pow(1000, 2)},
-		{unit : 'G', name : 'billion', value : Math.pow(1000, 3)},
-		{unit : 'T', name : 'trillion', value : Math.pow(1000, 4)}
-	],
-	"speed up for inferno" : [
-		{unit : '', name : 'base', value : 1},
-		{unit : 'k', name : 'thousand', value : 1000},
-		{unit : 'M', name : 'million', value : Math.pow(1000, 2)},
-		{unit : 'G', name : 'billion', value : Math.pow(1000, 3)},
-		{unit : 'T', name : 'trillion', value : Math.pow(1000, 4)}
-	],
-	"speed up" : [
-		{unit : 'mn', name : 'minute', value : 1},
-		{unit : 'h', name : 'hour', value : 60},
-		{unit : 'd', name : 'day', value : 1440},
-		{unit : 'y', name : 'year', value : 525600},
-		{unit : 'c', name : 'century', value : 52594920}
-	]
-};
-let textToDisplay = {
-	"ressources" : [
-		'You have ',
-		'$quantity',
-		' ',
-		'$rssSelected'
-	],
-	"speed up" : [
-		'You have ',
-		'$quantity',
-		'of ',
-		'$rssSelected',
-		' speed up'
-	],
-	"speed up for inferno" : [
-		'You have ',
-		'$quantity',
-		' point in ',
-		'$rssSelected',
-		' speed up'
-	]
-};
 
-const capitalize = (s) => {
-  if (typeof s !== 'string') return ''
-  return s.charAt(0).toUpperCase() + s.slice(1)
-}
-
-function beautifyTime(value) {
-	var endValue = '';
-	for(var weight = (isCompact.checked) ? compactUnit : unitDisplay['speed up'].length - 1; weight >= 0; weight--) {
-		if (value >= unitDisplay['speed up'][weight].value) {
-			var tempValue = Math.trunc(value / unitDisplay['speed up'][weight].value)
-			endValue += tempValue.toLocaleString() + unitDisplay['speed up'][weight].unit + ' ';
-			value -= tempValue * unitDisplay['speed up'][weight].value;
-		}
-	}
-	
-	return ((endValue == '') ? ' 0 mn ' : endValue);
-}
-
-function beautifyRSS(value) {
-	var opt = {maximumFractionDigits: 2, minimumFractionDigits: 0}
-	if (isCompact.checked) {
-		var weight = (isCompact.checked) ? compactUnit : 0;
-		while (value < unitDisplay['ressources'][weight].value && weight > 0) weight--;
-		return (value / unitDisplay['ressources'][weight].value).toLocaleString(undefined, opt) + '' + unitDisplay['ressources'][weight].unit;
-	}
-	else return value.toLocaleString()
-}
-
-function beautify(value) {
-	return ((typeSelected != 'speed up') ? beautifyRSS(value) : beautifyTime(value));
-}
-
-function changeResultUnit(value) {
-	compactUnit = value*1;
-	
-	CalculateItAll();
-}
-
-function toggleUnitChoice() {
-	if (isCompact.checked) compactUnitForm.style.display = 'block';
-	else compactUnitForm.style.display = 'none';
-	
-	CalculateItAll();
-}
 
 function CalculateItAll() {
     for(const elem in rss[typeSelected]) {
@@ -109,7 +11,7 @@ function CalculateItAll() {
 
 window.onload = function() {
 	rssType = document.getElementById("rssType");
-	TypeChoose = document.getElementById("rssOrSpeed");
+	typeChoose = document.getElementById("rssOrSpeed");
 	endResult = document.getElementById("endResult");
     rssForm = document.getElementById("amsRssForm");
 	isCompact = document.getElementById("resultUnit");
@@ -118,25 +20,9 @@ window.onload = function() {
 	compactUnitForm.style.display = 'none';
 	
 	for(var type in rss) {
-		buildOtionChoose(type);
+		buildOption(type, typeChoose);
 	}
 	changeType();
-}
-
-
-
-function buildOtionChoose(type) {
-	var optionChoose = document.createElement('option');
-    optionChoose.value = type;
-    optionChoose.innerHTML = capitalize(type);
-    TypeChoose.appendChild(optionChoose);
-}
-
-function buildOption(elem) {
-	var optionRSS = document.createElement('option');
-    optionRSS.value = elem;
-    optionRSS.innerHTML = capitalize(elem);
-    rssType.appendChild(optionRSS);
 }
 
 function buildUnitResultChoice(elem, weight) {
@@ -149,47 +35,17 @@ function buildUnitResultChoice(elem, weight) {
 	input.onclick = function() { changeResultUnit(this.value); }
     compactUnitForm.appendChild(input);
     
-	var label = document.createElement('label');
-    label.htmlFor = 'unit-' + elem.name;
-    label.innerHTML = capitalize(elem.name);
-    compactUnitForm.appendChild(label);
+	buildLabel(elem, compactUnitForm);
 }
-
-function buildResult(elem) {
-	var pResult = document.createElement('p');
-    pResult.id = 'endResult-' + elem;
-    //pResult.innerHTML = 'You have 0 ' + ((typeSelected == 'speed up') ? 'mn of ' : '') + elem + ((typeSelected == 'speed up') ? ' speed up' : '');
-	//pResult.innerHTML = '';
-    endResult.appendChild(pResult);
-}
-
-function buildForm(elem) {
-	var label = document.createElement('label');
-    label.htmlFor = 'id-' + elem.name;
-    label.innerHTML = elem.name + ((typeSelected == 'ressources') ? ' box ' : ' ');
-    rssForm.appendChild(label);
-    
-    var input = document.createElement('input');
-    input.type = 'number';
-    input.name = elem.name;
-	input.id = 'id-' + elem.name;
-    input.min = 0;
-    input.value = elem.Qty;
-    rssForm.appendChild(input);
-    
-    rssForm.appendChild(document.createElement('br'));
-}
-
-
 
 function changeType() {
-	typeSelected = TypeChoose.value;
+	typeSelected = typeChoose.value;
     
     rssType.innerHTML = '';
     endResult.innerHTML = '';
 	compactUnitForm.innerHTML = '';
     for(const elem in rss[typeSelected]) {
-		buildOption(elem);
+		buildOption(elem, rssType);
 		buildResult(elem);
 	}
 	if (unitDisplay[typeSelected].length - 1 < compactUnit) compactUnit = unitDisplay[typeSelected].length - 1;
@@ -234,8 +90,6 @@ function resetIt() {
 			value.Qty = 0;
 		}
 		changeIt();
-		//pResult.innerHTML = 'You have 0' + ((typeSelected == 'ressources') ? ' ' : ' of ') + rssSelected + ((typeSelected == 'ressources') ? '' : ' speed up');
-		//pResult.style.display = 'none';
 		displayIt(0);
 	}
 }
@@ -263,21 +117,6 @@ function updateIt() {
 	displayIt(calculateIt());
 }
 
-function calculateIt() {
-	//var pResult = document.getElementById("endResult-"+rssSelected);
-	var rssTotal = 0;
-
-	for(const elem of rss[typeSelected][rssSelected]) if(elem.Qty > 0) rssTotal += elem.Qty * elem.value;
-	
-	return rssTotal;
-	
-	/*if(rssTotal != 0) {
-		//pResult.innerHTML = "You have " + beautify(rssTotal) + ((typeSelected == 'ressources') ? ' ' : 'of ') + rssSelected + ((typeSelected == 'ressources') ? '' : ' speed up');
-		pResult.innerHTML = displayIt(rssTotal);
-		pResult.style.display = 'block';
-	}*/
-}
-
 function CalculateTotal() {
 	var tempTotal = 0;
     for(const elem in rss[typeSelected]) {
@@ -292,32 +131,9 @@ function CalculateTotal() {
 	rssSelected = rssType.value;
 }
 
-function textResult(value) {
-	textTemp = '';
-	for(elem of textToDisplay[typeSelected]) {
-		switch(elem) {
-			case '$quantity':
-				textTemp += beautify(value);
-				break;
-			
-			
-			case '$rssSelected':
-				textTemp += rssSelected;
-				break;
-				
-			
-			default:
-				textTemp += elem;
-				break;
-		}
-	}
-	
-	return textTemp;
-}
-
 function displayIt(value) {
 	var pResult = document.getElementById("endResult-"+rssSelected);
-	pResult.innerHTML = textResult(value);
+	pResult.innerHTML = textResult(beautify(value));
 	pResult.style.display = (value == 0) ? 'none' : 'block';
 	//return textTemp;
 }
