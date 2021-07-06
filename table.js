@@ -245,5 +245,32 @@ let rss = {
 			{Qty : 0,	name : "7d VIP time",		value : 10080},
 			{Qty : 0,	name : "30d VIP time",		value : 43200}
 		]
+	},
+	"speed up for inferno" : {
+		"versatile" : [
+			{Qty : 0,	name : "5mn versatile speed up",		value : 150},
+			{Qty : 0,	name : "1h versatile speed up",		value : 1500},
+			{Qty : 0,	name : "8h versatile speed up",		value : 9800}
+		],
+		"building" : [
+			{Qty : 0,	name : "5mn building speed up",		value : 150},
+			{Qty : 0,	name : "2h building speed up",			value : 2800}
+		],
+		"research" : [
+			{Qty : 0,	name : "5mn research speed up",		value : 150},
+			{Qty : 0,	name : "2h research speed up",			value : 2800}
+		],
+		"training" : [
+			{Qty : 0,	name : "5mn training speed up",		value : 150},
+			{Qty : 0,	name : "2h training speed up",			value : 2800}
+		],
+		"healing" : [
+			{Qty : 0,	name : "5mn healing speed up",			value : 150},
+			{Qty : 0,	name : "2h healing speed up",			value : 2800}
+		],
+		"defense" : [
+			{Qty : 0,	name : "5mn defense speed up",			value : 150},
+			{Qty : 0,	name : "2h defense speed up",			value : 2800}
+		]
 	}
 };
