@@ -47,6 +47,8 @@ let rss = {
 			{Qty : 0,	name : "80k energy",	value : 80000},
 			{Qty : 0,	name : "250k energy",	value : 250000},
 			{Qty : 0,	name : "800k energy",	value : 800000},
+			{Qty : 0,	name : "1.6M energy",	value : 1600000},
+			{Qty : 0,	name : "2.4M energy",	value : 2400000},
 			{Qty : 0,	name : "4M energy",		value : 4000000},
 			{Qty : 0,	name : "8M energy",		value : 8000000}
 		],
